@@ -51,7 +51,7 @@ knife node list
 if command_exists notify_skypebot
 then
 # notify skypebot
-notify_skypebot "$THIRDLEVELDOMAINNAME.vivodot.com" || exit 0
+notify_skypebot "$THIRDLEVELDOMAINNAME.$DOMAINNAME" || exit 0
 fi
 
 }
@@ -102,10 +102,10 @@ knife ec2 server create --region eu-west-1 -s $SUBNETID -I $AMIID \
 
 IPADDR=`cat $LOG|grep IP $LOG|uniq|awk {'print $4'}`
 
-cli53 rrcreate vivodot.com $THIRDLEVELDOMAINNAME A $IPADDR --ttl 60
-cli53 rrcreate vivodot.com mgmt.$THIRDLEVELDOMAINNAME A $IPADDR --ttl 60
+cli53 rrcreate $DOMAINNAME $THIRDLEVELDOMAINNAME A $IPADDR --ttl 60
+cli53 rrcreate $DOMAINNAME mgmt.$THIRDLEVELDOMAINNAME A $IPADDR --ttl 60
 
-knife node run_list add $THIRDLEVELDOMAINNAME.vivodot.com \'$DEFAULTROLE\'
+knife node run_list add $THIRDLEVELDOMAINNAME.$DOMAINNAME \'$DEFAULTROLE\'
 
 echo "Host: run_list for $DEFAULTROLE added to $THIRDLEVELDOMAINNAME"
 
