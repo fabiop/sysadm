@@ -1,0 +1,17 @@
+#!/bin/bash
+
+source /etc/aws-test-env.conf
+
+[ $# -eq 0 ] && exit
+
+if echo $1|grep -qv "$DOMAIN"
+then 
+    SSHSERVER=$1.$DOMAIN 
+else
+    SSHSERVER=$1
+fi
+
+ssh root@$SSHSERVER -i $PEMKEY -o StrictHostKeyChecking=no $2 
+
+
+
