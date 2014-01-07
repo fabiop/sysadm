@@ -3,8 +3,9 @@
 DATE=`date +%Y-%m-%d`
 S3CMD=/usr/bin/s3cmd
 
-# S3 bucket name without the s3 url
-S3BUCKETNAME="my.s3.bucket.name"
+# S3 LOG bucket name without the s3 url
+# **** CAREFUL THIS BUCKET WILL BE EMPTIED ****
+S3BUCKETNAME="my.s3.log.bucket.name"
 LOGDIR=/var/log/s3/${S3BUCKETNAME}
 
 # check if s3cmd is installed and configured
